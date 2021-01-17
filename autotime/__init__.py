@@ -28,7 +28,7 @@ class LineWatcher(object):
 
     def stop(self):
         delta = monotonic() - self.start_time
-        print(u"\nexecution time: {}".format(format_delta(delta)))
+        print(u"\ntime: {}".format(format_delta(delta)))
 
 
 timer = LineWatcher()

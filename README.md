@@ -15,11 +15,11 @@ $ python -m pip install git+https://github.com/chaseedge/ipython-autotime.git
 ```python
 In [1]: %load_ext autotime
 
-execution time: 264 µs
+time: 264 µs
 
 In [2]: x = 1
 
-execution time: 416 µs
+time: 416 µs
 
 In [3]: x / 0
 ---------------------------------------------------------------------------
@@ -29,7 +29,7 @@ ZeroDivisionError                         Traceback (most recent call last)
 
 ZeroDivisionError: division by zero
 
-execution time: 88.7 ms
+time: 88.7 ms
 ```
 
 ## Want to turn it off?
