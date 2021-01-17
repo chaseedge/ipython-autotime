@@ -13,9 +13,9 @@ from IPython.core.magics.execution import _format_time as format_delta
 
 
 def format_timestamp(struct_time):
-    timestamp = strftime('%Y-%m-%d %H:%M:%S %z', struct_time)
+    timestamp = strftime("%Y-%m-%d %H:%M:%S %z", struct_time)
     # add colon in %z (for datetime.fromisoformat, stackoverflow.com/q/44836581)
-    return '{}:{}'.format(timestamp[:-2], timestamp[-2:])
+    return "{}:{}".format(timestamp[:-2], timestamp[-2:])
 
 
 class LineWatcher(object):
@@ -25,7 +25,8 @@ class LineWatcher(object):
     -----
     * Register the `start` and `stop` methods with the IPython events API.
     """
-    __slots__ = ['start_time', 'timestamp']
+
+    __slots__ = ["start_time", "timestamp"]
 
     def start(self):
         self.timestamp = localtime()
@@ -33,12 +34,7 @@ class LineWatcher(object):
 
     def stop(self):
         delta = monotonic() - self.start_time
-        print(
-            u'time: {} (started: {})'.format(
-                format_delta(delta),
-                format_timestamp(self.timestamp),
-            )
-        )
+        print(u"\nexecution time: {}".format(format_delta(delta)))
 
 
 timer = LineWatcher()
@@ -48,11 +44,11 @@ stop = timer.stop
 
 def load_ipython_extension(ip):
     start()
-    ip.events.register('pre_run_cell', start)
-    ip.events.register('post_run_cell', stop)
+    ip.events.register("pre_run_cell", start)
+    ip.events.register("post_run_cell", stop)
 
 
 def unload_ipython_extension(ip):
-    ip.events.unregister('pre_run_cell', start)
-    ip.events.unregister('post_run_cell', stop)
+    ip.events.unregister("pre_run_cell", start)
+    ip.events.unregister("post_run_cell", stop)
 
